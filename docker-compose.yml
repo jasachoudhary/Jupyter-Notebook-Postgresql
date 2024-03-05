@@ -1,0 +1,17 @@
+version: "3"
+services:
+  postgres:
+    build:
+      context: ./postgresql
+    ports:
+      - "5432:5432"
+
+  jupyter:
+    build:
+      context: ./jupyter
+    ports:
+      - "8888:8888"
+    links:
+      - postgres
+    volumes:
+      - "./notebooks:/notebooks"
